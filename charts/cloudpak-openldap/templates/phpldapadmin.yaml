@@ -10,7 +10,7 @@ spec:
   - port: 80
     targetPort: 80
 {{- if .Values.PhpLdapAdmin.NodePort }}
-    nodePort: 31080
+    nodePort: {{.Values.PhpLdapAdmin.NodePort }}
 {{- end }}
   selector:
     app: {{.Release.Name}}-admin
