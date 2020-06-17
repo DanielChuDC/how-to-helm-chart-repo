@@ -40,3 +40,4 @@ PhpLdapAdmin:
 
 OpenshiftRoute: # cannot have `-`, else get template: cloudpak-openldap/templates/phpldapadmin.yaml:42: bad character U+002D '-'
   enabled: false
+  
