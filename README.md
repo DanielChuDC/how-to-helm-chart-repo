@@ -35,6 +35,22 @@ $ git checkout -b gh-pages
 - We will have some sample example as well, like dotnet core 3, and loopback application
 
 
+### How It Works
+
+- Using `Helm Publisher`
+- Using Github Action to publish 
+- All the charts are store inside `charts`
+- `gh-pages` branch 
+
+
+$ helm create mychart
+$ helm package mychart
+$ mv mychart-0.1.0.tgz docs
+$ helm repo index docs --url https://technosophos.github.com/tscharts
+$ git add -i
+$ git commit -av
+$ git push origin master
+
 
 ---
 
@@ -47,6 +63,10 @@ $ git checkout -b gh-pages
 [Helm2 vs Helm3](https://itnext.io/helm2-vs-helm3-part-1-c76c29106e99)
 
 [Helm 3: what is it and what are the fundamental commands](https://www.padok.fr/en/blog/helm-3-commands)
+
+[Example chart repository for Helm.](https://github.com/technosophos/tscharts) 
+
+[Automate Helm chart repository publishing with GitHub Actions and Pages](https://medium.com/@stefanprodan/automate-helm-chart-repository-publishing-with-github-actions-and-pages-8a374ce24cf4)
 
 
 ### Documentation and reference 
