@@ -1,77 +1,146 @@
-# how-to-make-helm-chart-repo
-This repo will guide you on how to make helm chart repo
+# Chart Releaser
 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![CircleCI](https://circleci.com/gh/helm/chart-releaser/tree/master.svg?style=svg)](https://circleci.com/gh/helm/chart-releaser/tree/master)
 
-### Introduction
+**Helps Turn GitHub Repositories into Helm Chart Repositories**
 
-Helm 2 release on
+`cr` is a tool designed to help GitHub repos self-host their own chart repos by adding Helm chart artifacts to GitHub Releases named for the chart version and then creating an `index.yaml` file for those releases that can be hosted on GitHub Pages (or elsewhere!).
 
-Helm 3 release on Wed, Nov 13, 2019
+## Installation
 
-Helm 2 used ConfigMaps to store release information. In Helm 3, Secrets are used instead (with a secret type of helm.sh/release) as the default storage driver. This brings a few advantages and has greatly simplified the functionality of Helm.
+### Binaries (recommended)
 
----
+Download your preferred asset from the [releases page](https://github.com/helm/chart-releaser/releases) and install manually.
 
-### In this repo, we will using github page example to host helm chart
+### Go get (for contributing)
 
-```sh
-Github Pages example
-
-In a similar way you can create charts repository using GitHub Pages.
-
-GitHub allows you to serve static web pages in two different ways:
-
-    By configuring a project to serve the contents of its docs/ directory
-    By configuring a project to serve a particular branch
-
-We’ll take the second approach, though the first is just as easy.
-
-The first step will be to create your gh-pages branch. You can do that locally as.
-
-$ git checkout -b gh-pages
-
+```console
+$ # clone repo to some directory outside GOPATH
+$ git clone github.com/helm/chart-releaser
+$ go mod download
+$ go install
 ```
 
-- We will have some sample example as well, like dotnet core 3, and loopback application
+## Usage
+
+Currently, `cr` can create GitHub Releases from a set of charts packaged up into a directory and create an `index.yaml` file for the chart repository from GitHub Releases.
+
+```console
+$ cr --help
+Create Helm chart repositories on GitHub Pages by uploading Chart packages
+and Chart metadata to GitHub Releases and creating a suitable index file
+
+Usage:
+  cr [command]
+
+Available Commands:
+  help        Help about any command
+  index       Update Helm repo index.yaml for the given GitHub repo
+  upload      Upload Helm chart packages to GitHub Releases
+  version     Print version information
+
+Flags:
+      --config string   Config file (default is $HOME/.chart-releaser.yaml)
+  -h, --help            help for cr
+
+Use "cr [command] --help" for more information about a command.
+```
+
+### Create GitHub Releases from Helm Chart Packages
+
+Scans a path for Helm chart packages and creates releases in the specified GitHub repo uploading the packages.
+
+```console
+$ cr upload --help
+Upload Helm chart packages to GitHub Releases
+
+Usage:
+  cr upload [flags]
+
+Flags:
+  -h, --help                  help for upload
+  -o, --owner string          GitHub username or organization
+  -p, --package-path string   Path to directory with chart packages (default ".cr-release-packages")
+  -r, --repo string           GitHub repository
+  -t, --token string          GitHub Auth Token
+
+Global Flags:
+      --config string   Config file (default is $HOME/.chart-releaser.yaml)
+```
+
+### Create the Repository Index from GitHub Releases
+
+Once uploaded you can create an `index.yaml` file that can be hosted on GitHub Pages (or elsewhere).
+
+```console
+$ cr index --help
+
+Update a Helm chart repository index.yaml file based on a the
+given GitHub repository's releases.
+
+Usage:
+  cr index [flags]
+
+Flags:
+  -h, --help                  help for index
+  -i, --index-path string     Path to index file (default ".cr-index/index.yaml")
+  -o, --owner string          GitHub username or organization
+  -p, --package-path string   Path to directory with chart packages (default ".cr-release-packages")
+  -r, --repo string           GitHub repository
+  -t, --token string          GitHub Auth Token (only needed for private repos)
+
+Global Flags:
+      --config string   Config file (default is $HOME/.chart-releaser.yaml)
+```
+
+## Configuration
+
+`cr` is a command-line application.
+All command-line flags can also be set via environment variables or config file.
+Environment variables must be prefixed with `CR_`.
+Underscores must be used instead of hyphens.
+
+CLI flags, environment variables, and a config file can be mixed.
+The following order of precedence applies:
+
+1. CLI flags
+1. Environment variables
+1. Config file
+
+### Examples
+
+The following example show various ways of configuring the same thing:
+
+#### CLI
+
+    cr upload --owner myaccount --repo helm-charts --package-path .deploy --token 123456789
+
+#### Environment Variables
+
+    export CR_OWNER=myaccount
+    export CR_REPO=helm-charts
+    export CR_PACKAGE_PATH=.deploy
+    export CR_TOKEN="123456789"
+
+    cr upload
+
+#### Config File
+
+`config.yaml`:
+
+```yaml
+owner: myaccount
+repo: helm-charts
+package-path: .deploy
+token: 123456789
+```
+
+#### Config Usage
+
+    cr upload --config config.yaml
 
 
-### How It Works
+`cr` supports any format [Viper](https://github.com/spf13/viper) can read, i. e. JSON, TOML, YAML, HCL, and Java properties files.
 
-- Using `Helm Publisher`
-- Using Github Action to publish 
-- All the charts are store inside `charts`
-- `gh-pages` branch 
-
-
-$ helm create mychart
-$ helm package mychart
-$ mv mychart-0.1.0.tgz docs
-$ helm repo index docs --url https://technosophos.github.com/tscharts
-$ git add -i
-$ git commit -av
-$ git push origin master
-
-
----
-
-### This repo is inspired by 
-
-[Creating a Helm Chart Repository - Part 1](https://tech.paulcz.net/blog/creating-a-helm-chart-monorepo-part-1/)
-
-[Migrating Helm v2 to v3](https://helm.sh/docs/topics/v2_v3_migration/)
-
-[Helm2 vs Helm3](https://itnext.io/helm2-vs-helm3-part-1-c76c29106e99)
-
-[Helm 3: what is it and what are the fundamental commands](https://www.padok.fr/en/blog/helm-3-commands)
-
-[Example chart repository for Helm.](https://github.com/technosophos/tscharts) 
-
-[Automate Helm chart repository publishing with GitHub Actions and Pages](https://medium.com/@stefanprodan/automate-helm-chart-repository-publishing-with-github-actions-and-pages-8a374ce24cf4)
-
-
-### Documentation and reference 
-
-[The Chart Repository Guide: Helm v3](https://helm.sh/docs/topics/chart_repository/)
-
-[The Chart Repository Guide: Helm v2](https://v2.helm.sh/docs/developing_charts/#the-chart-repository-guide)
-
+Notice that if no config file is specified, `cr.yaml` (or any of the supported formats) is loaded from the current directory, `$HOME/.cr`, or `/etc/cr`, in that order, if found.
