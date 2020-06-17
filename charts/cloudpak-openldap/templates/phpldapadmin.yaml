@@ -40,7 +40,6 @@ spec:
 
 ---
 {{- if .Values.OpenshiftRoute.enabled -}}
-# {{- $routename := .Values.Openshift-route.routename -}}
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
