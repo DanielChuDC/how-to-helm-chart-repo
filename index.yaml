@@ -2,10 +2,10 @@ apiVersion: v1
 entries:
   cloudpak-openldap:
   - apiVersion: v1
-    appVersion: "2.2"
-    created: "2020-06-17T23:27:09.147917+08:00"
+    appVersion: "2.4"
+    created: "2020-06-17T23:37:54.061677+08:00"
     description: A OpenLDAP Chart for Kubernetes
-    digest: ed7c667799c30c193ad231accfb482c01a9f1bf54e5dd27be53145f20915fcf3
+    digest: 8d72ef028ef2f991de9e07896fb275c22edfecbe4afc690671de84030343dedf
     home: https://www.openldap.ort
     keywords:
     - ldap
@@ -13,11 +13,11 @@ entries:
     sources:
     - https://github.com/openldap/openldap
     urls:
-    - https://github.com/DanielChuDC/how-to-helm-chart-repo/releases/download/cloudpak-openldap-2.0.3/cloudpak-openldap-2.0.3.tgz
-    version: 2.0.3
+    - https://github.com/DanielChuDC/how-to-helm-chart-repo/releases/download/cloudpak-openldap-2.0.4/cloudpak-openldap-2.0.4.tgz
+    version: 2.0.4
   - apiVersion: v1
     appVersion: "2.1"
-    created: "2020-06-17T23:27:08.72699+08:00"
+    created: "2020-06-17T23:37:53.693273+08:00"
     description: A OpenLDAP Chart for Kubernetes
     digest: d02a45a5015ce0117c7cd7ac8d05dc96470b9ef2aa92bd5181471fc0ed008c69
     home: https://www.openldap.ort
@@ -31,7 +31,7 @@ entries:
     version: 2.0.1
   - apiVersion: v1
     appVersion: "2.0"
-    created: "2020-06-17T23:27:08.342028+08:00"
+    created: "2020-06-17T23:37:53.37206+08:00"
     description: A OpenLDAP Chart for Kubernetes
     digest: 711ff1d193cf8c4edab992d1c5ebd55aeebdba80cf06d3e18cb72f98a3fa8e36
     home: https://www.openldap.ort
@@ -46,11 +46,11 @@ entries:
   dotnetcore3:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-06-17T23:27:09.558424+08:00"
+    created: "2020-06-17T23:37:54.370362+08:00"
     description: A Helm chart for Kubernetes
     digest: b7519d0c01383e1f1f31652b775f1a7eb7aaed3c7b1a1f75bbe999d33866afb3
     name: dotnetcore3
     urls:
     - https://github.com/DanielChuDC/how-to-helm-chart-repo/releases/download/dotnetcore3-0.1.0/dotnetcore3-0.1.0.tgz
     version: 0.1.0
-generated: "2020-06-17T23:27:07.990338+08:00"
+generated: "2020-06-17T23:37:53.009221+08:00"
