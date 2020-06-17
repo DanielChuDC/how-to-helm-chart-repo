@@ -38,6 +38,5 @@ PhpLdapAdmin:
   Cpu: "512m"
   Memory: "200Mi"
 
-Openshift-route:
+OpenshiftRoute: # cannot have `-`, else get template: cloudpak-openldap/templates/phpldapadmin.yaml:42: bad character U+002D '-'
   enabled: false
-  routename: openldap

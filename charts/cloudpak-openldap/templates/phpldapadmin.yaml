@@ -39,12 +39,12 @@ spec:
           value: "{{.Values.PhpLdapAdmin.LdapEndpoint | default .Release.Name}}"
 
 ---
-{{- if .Values.Openshift-route.enabled -}}
+{{- if .Values.OpenshiftRoute.enabled -}}
 # {{- $routename := .Values.Openshift-route.routename -}}
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: {{.Values.Openshift-route.routename}}
+  name: {{.Release.Name}}
 spec:
   to:
     kind: Service
