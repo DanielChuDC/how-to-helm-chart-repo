@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: "1.0.0"
+version: 1.0.0
+description: Helm chart for deploying LoopBack Application.
+name: loopback4
+keywords:
+  - Node.js
+  - LoopBack
+  - amd64
+  - OpenSource
+
+icon: https://loopback.io/images/global/loopback-full-logo-blue.svg
+tillerVersion: ">=2.9.1"
+kubeVersion: ">=1.9.1"

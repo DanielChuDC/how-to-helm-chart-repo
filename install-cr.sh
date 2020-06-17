@@ -1,5 +1,5 @@
 
-
+# install chart-release in your mac
 
 curl -sSL https://github.com/helm/chart-releaser/releases/download/v0.2.3/chart-releaser_0.2.3_darwin_amd64.tar.gz | tar xzf -
 

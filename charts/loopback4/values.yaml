@@ -1,0 +1,76 @@
+# Default values for loopback4.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+## deployment replicaCount - optional field dependent on workload, if
+## have predefined replicas or not work with certain counts
+replicaCount: 1
+
+###############################################################################
+## Common image variables
+###############################################################################
+image:
+  repository: nginx
+  Image: "docker.io/moxing9876/multiarch"
+  ImageTag: "3.0.0"
+  tag: stable
+  ## Specify an imagePullPolicy - Always, Never, or IfNotPresent. Defaults to Always
+  ## if :latest tag is specified, or IfNotPresent otherwise.
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  pullPolicy: IfNotPresent
+
+  readinessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 5
+    httpGet:
+      path: "/ping"
+
+  livenessProbe:
+    initialDelaySeconds: 180
+    periodSeconds: 20
+    httpGet:
+      path: "/ping"  
+
+deployment:
+  annotations: {}
+  # Example:
+  # annotations:
+  #   prometheus.io/scheme: "http"
+  #   prometheus.io/scrape: "true"
+
+  labels: {}
+  # Example:
+  # labels:
+  #   environment: "dev"
+  #   tier: "backend"
+
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+
+
+## Configure resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi
+
+rbac: 
+  install: true
+
+# Specify architecture (amd64, ppc64le, s390x) and weight to be
+# used for scheduling as follows :
+#   0 - Do not use
+#   1 - Least preferred
+#   2 - No preference
+#   3 - Most preferred
+arch:
+ amd64: "3 - Most preferred"
+
