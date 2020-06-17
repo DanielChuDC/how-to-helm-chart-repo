@@ -38,3 +38,21 @@ spec:
         - name: PHPLDAPADMIN_LDAP_HOSTS
           value: "{{.Values.PhpLdapAdmin.LdapEndpoint | default .Release.Name}}"
 
+---
+{{- if .Values.Openshift-route.enabled -}}
+# {{- $routename := .Values.Openshift-route.routename -}}
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{.Values.Openshift-route.routename}}
+spec:
+  to:
+    kind: Service
+    name: {{.Release.Name}}-admin
+    weight: 100
+  port:
+    targetPort: 80
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
+  wildcardPolicy: None

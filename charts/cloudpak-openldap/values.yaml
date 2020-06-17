@@ -37,3 +37,7 @@ PhpLdapAdmin:
 
   Cpu: "512m"
   Memory: "200Mi"
+
+Openshift-route:
+  enabled: false
+  routename: openldap
