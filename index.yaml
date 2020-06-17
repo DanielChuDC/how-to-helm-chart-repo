@@ -1,0 +1,28 @@
+apiVersion: v1
+entries:
+  cloudpak-openldap:
+  - apiVersion: v1
+    appVersion: "2.0"
+    created: "2020-06-17T21:46:34.762396+08:00"
+    description: A OpenLDAP Chart for Kubernetes
+    digest: 711ff1d193cf8c4edab992d1c5ebd55aeebdba80cf06d3e18cb72f98a3fa8e36
+    home: https://www.openldap.ort
+    keywords:
+    - ldap
+    name: cloudpak-openldap
+    sources:
+    - https://github.com/openldap/openldap
+    urls:
+    - https://github.com/DanielChuDC/how-to-helm-chart-repo/releases/download/cloudpak-openldap-2.0.0/cloudpak-openldap-2.0.0.tgz
+    version: 2.0.0
+  dotnetcore3:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-06-17T21:46:35.209518+08:00"
+    description: A Helm chart for Kubernetes
+    digest: b7519d0c01383e1f1f31652b775f1a7eb7aaed3c7b1a1f75bbe999d33866afb3
+    name: dotnetcore3
+    urls:
+    - https://github.com/DanielChuDC/how-to-helm-chart-repo/releases/download/dotnetcore3-0.1.0/dotnetcore3-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-06-17T21:46:34.269615+08:00"
